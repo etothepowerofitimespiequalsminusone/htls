@@ -1,5 +1,6 @@
 <?php
 
+use App\City;
 use App\Hotel;
 
 /*
@@ -13,6 +14,14 @@ use App\Hotel;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HotelController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->middleware('auth');
+
+Route::resource('hotel', 'HotelController', ['except' => ['edit', 'update', 'destroy']]);
+Route::resource('country', 'CountryController', ['only' => ['create', 'store']]);
+Route::resource('city', 'CityController', ['only' => ['create', 'store']]);
+Route::get('countries/hotels', 'HotelController@indexByCountry');
+Route::get('admin', 'AdminController@admin');

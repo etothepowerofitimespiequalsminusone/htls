@@ -12,4 +12,13 @@ class Hotel extends Model
     public function city() { 
         return $this->belongsTo('App\City');
     }
+
+    public function images() {
+        return array(
+            'server_path' => public_path().'/uploads/',
+            'asset_path' => 'uploads/',
+            'image_small' => 'small_'.$this->id.'.jpg',
+            'image_large' => 'large_'.$this->id.'.jpg',
+        );
+    }
 }
