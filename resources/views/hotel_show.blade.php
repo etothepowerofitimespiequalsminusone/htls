@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="panel-body">
-                    <h4><a href='{{ url('book', $hotel->id) }}'>Book</a></h4>
+                    <h4><a href='{{ url('book',$hotel->id) }}'>Book</a></h4>
                     <p>Price for single room: {{ $hotel->price_single }} &euro;</p>
                     <p>Price for double room: {{ $hotel->price_double }} &euro;</p>
                     <p>Price for triple room: {{ $hotel->price_triple }} &euro;</p>

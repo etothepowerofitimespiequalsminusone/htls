@@ -15,7 +15,10 @@ class CreateRoomBookingsTable extends Migration
     {
         Schema::create('room_bookings', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('type');
+            $table->integer('number_of_rooms');
             $table->timestamps();
+            $table->integer('booking_id')->unsigned();
         });
     }
 

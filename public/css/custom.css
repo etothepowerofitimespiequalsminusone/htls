@@ -1,3 +1,22 @@
 .list-item-with-icon {
     margin: 10px 0;
 }
+
+.booking-form{
+/*margin-left: 5em;*/
+}
+.booking-form input{
+    display: block;
+}
+.container-info{
+    border:2px solid black;
+    margin-bottom: 1em;
+    background:white;
+}
+h1{
+    text-align: center;
+}
+.cancelled{
+    border: 2px solid red;
+    margin-bottom:1em;
+}

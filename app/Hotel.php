@@ -21,4 +21,7 @@ class Hotel extends Model
             'image_large' => 'large_'.$this->id.'.jpg',
         );
     }
+    public function booking(){
+        return $this->hasMany('App/Booking');
+    }
 }

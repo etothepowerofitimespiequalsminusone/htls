@@ -48,7 +48,7 @@
                     <ul class="nav navbar-nav">
                         <li><a href="/countries/hotels">Countries</a></li>
                         <li><a href="/hotel">Hotels</a></li>
-                        <li><a href="/booking">Booking</a></li>
+                        <li><a @if(!Auth::guest() && Auth::user()->isAdmin()) href="admin/booking" @else href="/booking"@endif>Booking</a></li>
                         @if ( !Auth::guest() && Auth::user()->isAdmin() )
                             <li><a href="/admin">Admin</a></li>
                         @endif

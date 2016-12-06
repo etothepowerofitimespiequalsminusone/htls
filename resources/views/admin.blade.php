@@ -10,6 +10,7 @@
                        <li><a href="{{ url('country/create') }}">Add a new country</a></li>
                        <li><a href="{{ url('city/create') }}">Add a new city</a></li>
                        <li><a href="{{ url('hotel/create') }}">Add a new hotel</a></li>
+                       <li><a href="{{ url('admin/booking') }}">View booking information </a></li>
                     </ul>
                 </div>
             </div>

@@ -30,5 +30,9 @@ class User extends Authenticatable
     // determine if User is admin by checking DB field role (default is 1, 2 is admin)
     public function isAdmin() {
         return ($this->role == 2);
-    }        
+    }
+
+    public function bookings(){
+        return $this->hasMany('App/Booking');
+    }
 }
