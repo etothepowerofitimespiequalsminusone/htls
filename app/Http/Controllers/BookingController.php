@@ -39,6 +39,7 @@ class BookingController extends Controller
             $price_double = $hotel->price_double;
             $price_triple = $hotel->price_triple;
             $total[$booking->id] = 0;
+            // calculation individual room type prices and total sum of a booking
             foreach ($rooms[$booking->id] as $room) {
                 if ($room['type'] == 'single') {
                     $sum[$room['id']] = $room['number_of_rooms'] * $price_single;
@@ -63,7 +64,7 @@ class BookingController extends Controller
      */
     public function create($id)
     {
-
+        //just for presentation purposes
         $date = date('Y-m-d');
 
         $hotel = Hotel::find($id);
@@ -78,6 +79,7 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
+        //validating the input data
         $this->validate($request, array(
             'start_date' => 'required|date|after:yesterday',
             'end_date' => 'required|date|after:start_date',
@@ -88,7 +90,7 @@ class BookingController extends Controller
             'phone' => 'required|integer'
         ));
 
-
+        //initializing and saving the booking
         $booking = new Booking();
         $booking->start_date = $request->start_date;
         $booking->end_date = $request->end_date;
@@ -98,6 +100,8 @@ class BookingController extends Controller
         $booking->hotel_id = $request->hotel_id;
         $booking->save();
 
+
+        //saving the individual room type bookings
         $id = $booking->id;
         if ($request->number_of_single > 0) {
             $room_booking = new RoomBooking();
@@ -127,25 +131,17 @@ class BookingController extends Controller
     //since very little functionality is needed I edit and save the cancel in the same method
     public function edit($id)
     {
+        //cancelling happens on logical level by changing the value of cancelled to true
         $booking = Booking::find($id);
         if($booking->cancelled == true)
             $booking->cancelled = false;
         else
-        $booking->cancelled = true;
+        $booking->cancelled = true; // this is an option to activate cancelled bookings
 
 
         $booking->save();
 
         Session::flash('success','booking cancelled');
         return redirect()->route('admin.booking');
-    }
-    public function update(Request $request,$id)
-    {
-//        $booking = Booking::find($id);
-//        $booking->cancelled = true;
-//        $booking->save();
-//
-//        Session::flash('success','booking cancelled');
-//        return redirect()->route('admin.booking');
     }
 }

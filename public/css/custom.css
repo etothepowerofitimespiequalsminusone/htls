@@ -16,6 +16,8 @@
 h1{
     text-align: center;
 }
+
+/*styling for cancelled booking*/
 .cancelled{
     border: 2px solid red;
     margin-bottom:1em;

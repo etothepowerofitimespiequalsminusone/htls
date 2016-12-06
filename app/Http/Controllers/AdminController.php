@@ -17,7 +17,7 @@ class AdminController extends Controller
     public function admin() {
         return view('admin');
     }
-
+    //this method gives access to all of the bookings and prices
     public function booking(){
 
         $rooms = [];
@@ -31,6 +31,7 @@ class AdminController extends Controller
 
         foreach ($bookings as $booking) {
             $rooms[$booking->id] = RoomBooking::all()->where('booking_id', $booking->id);
+            //gives additional information about the user
             $users[$booking->id] = User::find($booking->user_id);
             $hotel = Hotel::find($booking->hotel_id);
             $hotels[$booking->id] = $hotel;
@@ -52,7 +53,7 @@ class AdminController extends Controller
                 }
             }
         }
-
+        //returns the view along with all the booking and user information
         return view('adminbooking')->withBookings($bookings)->withRooms($rooms)->withUsers($users)
             ->withHotels($hotels)->withSum($sum)->withTotal($total);
     }
